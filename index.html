@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profiles</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="app-brand">Profiles</div>
+        <nav class="app-tabs">
+            <button class="tab active" data-tab="home" aria-selected="true">Home</button>
+            <button class="tab" data-tab="about" aria-selected="false">About</button>
+        </nav>
+    </header>
+
+    <main class="app-main">
+        <section id="home" class="tab-panel active" role="tabpanel" aria-labelledby="home-tab">
+            <div class="cards-row" id="cardsRow" aria-live="polite"></div>
+        </section>
+        <section id="about" class="tab-panel" role="tabpanel" aria-labelledby="about-tab">
+            <div class="about">
+                <h2>About</h2>
+                <p>This is a lightweight profile launcher with smooth UI and Instagram deep-linking.</p>
+            </div>
+        </section>
+    </main>
+
+    <dialog id="addProfileDialog" class="modal">
+        <form id="addProfileForm" method="dialog">
+            <h3>Add Profile</h3>
+            <div class="field">
+                <label for="personName">Name</label>
+                <input id="personName" name="personName" type="text" placeholder="e.g. Jane Doe" required />
+            </div>
+            <div class="field">
+                <label for="instagramUrl">Instagram URL</label>
+                <input id="instagramUrl" name="instagramUrl" type="url" placeholder="https://instagram.com/username" required />
+                <small class="hint">Use a full profile URL so we can extract the username.</small>
+            </div>
+            <div class="field">
+                <label for="profileImage">Profile image (optional)</label>
+                <input id="profileImage" name="profileImage" type="file" accept="image/*" />
+            </div>
+
+            <div class="error" id="formError" aria-live="assertive" hidden></div>
+
+            <div class="modal-actions">
+                <button type="button" class="btn ghost" id="cancelAdd">Cancel</button>
+                <button type="submit" class="btn primary">Add</button>
+            </div>
+        </form>
+    </dialog>
+
+    <template id="cardTemplate">
+        <article class="card" data-id="">
+            <div class="avatar" aria-hidden="true"></div>
+            <div class="meta">
+                <h4 class="name"></h4>
+                <p class="username"></p>
+            </div>
+            <div class="actions">
+                <button class="btn open">Open in Instagram</button>
+            </div>
+        </article>
+    </template>
+
+    <script src="./app.js" type="module"></script>
+</body>
+</html>
+
+
